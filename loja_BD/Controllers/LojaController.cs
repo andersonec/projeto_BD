@@ -12,12 +12,27 @@ namespace loja_BD.Controllers
     public class LojaController : Controller
     {
         [HttpGet("consultarListaProdutos")]
-        public List<Produto> ConsultarListaFuncionarios()
+        public List<Produto> ConsultarListaProdutos()
         {
             Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
 
             return metodos3Ptech.ConsultarListaProdutos();
         }
 
+        [HttpGet("consultarListaFuncionarios")]
+        public List<Funcionario> ConsultarListaFuncionarios()
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ConsultarListaFuncionarios();
+        }
+
+        [HttpGet("consultarFuncionario/{cpf}")]
+        public Funcionario ConsultarFuncionario(string cpf)
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ConsultarFuncionario(cpf);
+        }
     }
 }

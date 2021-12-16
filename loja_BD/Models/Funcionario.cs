@@ -7,8 +7,9 @@ namespace loja_BD.Models
 {
     public class Funcionario
     {
-        public string nome { get; set; }
-        public string cpf { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
+        public string cargo { get; set; }
+        public string salario { get; set; }
+        public Pessoa pessoa { get; set; } = new Pessoa();
     }
 }

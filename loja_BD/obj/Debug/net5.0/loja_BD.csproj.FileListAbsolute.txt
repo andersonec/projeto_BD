@@ -27,3 +27,10 @@ C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Debug\net5.0\loja_BD.
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Debug\net5.0\ref\loja_BD.dll
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Debug\net5.0\loja_BD.pdb
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Debug\net5.0\loja_BD.genruntimeconfig.cache
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Npgsql.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll

@@ -33,3 +33,4 @@ C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Release\net5.0\loja_B
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Release\net5.0\ref\loja_BD.dll
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Release\net5.0\loja_BD.pdb
 C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Release\net5.0\loja_BD.genruntimeconfig.cache
+C:\Users\Administrador\Documents\teste\loja_BD\loja_BD\obj\Release\net5.0\loja_BD.csprojAssemblyReference.cache

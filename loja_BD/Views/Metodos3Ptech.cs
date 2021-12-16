@@ -21,35 +21,35 @@ namespace loja_BD.Views
 
             try
             {
-                using (pgsqlConnection = new NpgsqlConnection(connString))
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+
+                string cmdSelect = "SELECT idproduto, nome, valor, categoria " +
+                                "FROM loja.tbproduto";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+
+                //using(NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSelect, pgsqlConnection))
+                //{
+                //    Adpt.Fill(dataTable);
+                //}
+
+                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                while (dataReader.Read())
                 {
-                    pgsqlConnection.Open();
+                    produto = new Produto();
 
-                    string cmdSelect = "SELECT idproduto, nome, valor, categoria FROM loja.tbproduto";
+                    produto.idProduto = String.Format("{0}", dataReader["idproduto"]);
+                    produto.nome = String.Format("{0}", dataReader["nome"]);
+                    produto.valor = String.Format("{0}", dataReader["valor"]);
+                    produto.categoria = String.Format("{0}", dataReader["categoria"]);
 
-                    NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
-
-                    //using(NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSelect, pgsqlConnection))
-                    //{
-                    //    Adpt.Fill(dataTable);
-                    //}
-
-                    NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        produto = new Produto();
-
-                        produto.idProduto = String.Format("{0}", dataReader[0]);
-                        produto.nome = String.Format("{0}", dataReader[1]);
-                        produto.valor = String.Format("{0}", dataReader[2]);
-                        produto.categoria = String.Format("{0}", dataReader[3]);
-
-                        listaProdutos.Add(produto);
-                    }
-
-                    //cmd.Parameters.AddWithValue("varSql", "varIn");
-                    //cmd.ExecuteReader();
+                    listaProdutos.Add(produto);
                 }
+
+                //cmd.Parameters.AddWithValue("varSql", "varIn");
+                //cmd.ExecuteReader();
+
             }
             catch (Exception ex)
             {

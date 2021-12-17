@@ -12,54 +12,11 @@ namespace loja_BD.Views
 {
     public class Metodos3Ptech : DataAccessLayer
     {
-        public List<Produto> ConsultarListaProdutos()
+        #region MÉTODOS PARA CONSULTAS DE PESSOAL
+        public List<FuncionarioDTO> ConsultarListaFuncionarios()
         {
-            DataTable dataTable = new DataTable();
-
-            List<Produto> listaProdutos = new List<Produto>();
-            Produto produto = new Produto();
-
-            try
-            {
-                pgsqlConnection = new NpgsqlConnection(connString1);
-                pgsqlConnection.Open();
-
-                string cmdSelect = "SELECT idproduto, nome, valor, categoria " +
-                                "FROM loja.tbproduto";
-
-                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
-
-                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    produto = new Produto();
-
-                    produto.idProduto = String.Format("{0}", dataReader["idproduto"]);
-                    produto.nome = String.Format("{0}", dataReader["nome"]);
-                    produto.valor = String.Format("{0}", dataReader["valor"]);
-                    produto.categoria = String.Format("{0}", dataReader["categoria"]);
-
-                    listaProdutos.Add(produto);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Erro ao listar os Produtos: " + ex.Message);
-            }
-            finally
-            {
-                pgsqlConnection.Close();
-            }
-            return listaProdutos;
-        }
-
-        public List<Funcionario> ConsultarListaFuncionarios()
-        {
-            List<Funcionario> listaFuncionarios = new List<Funcionario>();
-            Funcionario funcionario = new Funcionario();
-            Pessoa pessoa = new Pessoa();
-            Endereco endereco = new Endereco();
+            List<FuncionarioDTO> listaFuncionarios = new List<FuncionarioDTO>();
+            FuncionarioDTO funcionario = new FuncionarioDTO();
 
             try
             {
@@ -73,10 +30,11 @@ namespace loja_BD.Views
                 NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    funcionario = new Funcionario();
+                    funcionario = new FuncionarioDTO();
 
-                    funcionario.id = Convert.ToInt32(dataReader["idvendedor"]);
+                    funcionario.idFuncionario = Convert.ToInt32(dataReader["idvendedor"]);
                     funcionario.cargo = String.Format("{0}", dataReader["cargo"]);
+                    funcionario.cpf = String.Format(@"{0:000\.000\.000\-00}", dataReader["cpf"]);
                     funcionario.salario = String.Format("R$ {0}", dataReader["salario"]);
 
                     listaFuncionarios.Add(funcionario);
@@ -93,7 +51,7 @@ namespace loja_BD.Views
             }
             return listaFuncionarios;
         }
-    
+
         public Funcionario ConsultarFuncionario(string cpf)
         {
             Funcionario funcionario = new Funcionario();
@@ -109,7 +67,7 @@ namespace loja_BD.Views
                                 "WHERE f.cpf LIKE @cpf " +
                                 "AND p.cpf LIKE f.cpf " +
                                 "AND e.idendereco = p.endereco";
-                
+
                 NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
                 npgsqlCommand.Parameters.AddWithValue("cpf", cpf);
 
@@ -149,5 +107,253 @@ namespace loja_BD.Views
 
             return funcionario;
         }
+
+
+        public List<ClienteDTO> ConsultarListaClientes()
+        {
+            List<ClienteDTO> listaClientes = new List<ClienteDTO>();
+            ClienteDTO cliente = new ClienteDTO();
+
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+                string cmdSelect = "SELECT c.idcliente, c.cpf, p.nome, p.cpf,  " +
+                                "FROM loja.tbcliente AS c, loja.tbpessoa AS p " +
+                                "WHERE c.cpf LIKE p.cpf";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+
+                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    cliente = new ClienteDTO();
+
+                    cliente.idCliente = Convert.ToInt32(dataReader["idcliente"]);
+                    cliente.nome = String.Format("{0}", dataReader["nome"]);
+                    cliente.cpf = String.Format(@"{0:000\.000\.000\-00}", dataReader["cpf"]);
+
+                    listaClientes.Add(cliente);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao listar os Clientes: " + ex.Message);
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
+            return listaClientes;
+        }
+
+        public Cliente ConsultarCliente(string cpf)
+        {
+            Cliente cliente = new Cliente();
+
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+                string cmdSelect = "SELECT c.idcliente, c.cpf, " +
+                                "p.cpf, p.nome, p.datanascimento, p.ddd, p.telefone, p.email, p.endereco, " +
+                                "e.idendereco, e.rua, e.numero, e.bairro, e.complemento, e.cep, e.cidade, e.estado " +
+                                "FROM loja.tbcliente AS c, loja.tbpessoa AS p, loja.tbendereco AS e " +
+                                "WHERE f.cpf LIKE @cpf " +
+                                "AND p.cpf LIKE f.cpf " +
+                                "AND e.idendereco = p.endereco";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("cpf", cpf);
+
+                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    cliente = new Cliente();
+
+                    cliente.idCliente = Convert.ToInt32(dataReader["idvendedor"]);
+
+                    cliente.pessoa.cpf = String.Format("{0}", dataReader["cpf"]);
+                    cliente.pessoa.nome = String.Format("{0}", dataReader["nome"]);
+                    cliente.pessoa.dataNascimento = String.Format("{0}", dataReader["datanascimento"]);
+                    cliente.pessoa.telefone = String.Format("({0}) {1}", dataReader["ddd"], dataReader["telefone"]);
+                    cliente.pessoa.email = String.Format("{0}", dataReader["email"]);
+
+                    cliente.pessoa.endereco.rua = String.Format("{0}", dataReader["rua"]);
+                    cliente.pessoa.endereco.numero = String.Format("{0}", dataReader["numero"]);
+                    cliente.pessoa.endereco.bairro = String.Format("{0}", dataReader["bairro"]);
+                    cliente.pessoa.endereco.complemento = String.Format("{0}", dataReader["complemento"]);
+                    cliente.pessoa.endereco.cep = Convert.ToDecimal(dataReader["cep"]);
+                    cliente.pessoa.endereco.cidade = String.Format("{0}", dataReader["cidade"]);
+                    cliente.pessoa.endereco.estado = String.Format("{0}", dataReader["estado"]);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao buscar Cliente: " + ex.Message);
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
+
+            return cliente;
+        }
+
+
+        public List<Produto> ConsultarListaProdutos()
+        {
+            List<Produto> listaProdutos = new List<Produto>();
+            Produto produto = new Produto();
+
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+
+                string cmdSelect = "SELECT p.idproduto, p.nome, p.valor, p.categoria, q.quantidade " +
+                                "FROM loja.tbproduto AS p, loja.tbestoque AS q " +
+                                "WHERE q.idproduto = p.idproduto";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+
+                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    produto = new Produto();
+
+                    produto.idProduto = Convert.ToInt32(dataReader["idproduto"]);
+                    produto.nome = String.Format("{0}", dataReader["nome"]);
+                    produto.valor = String.Format("{0}", dataReader["valor"]);
+                    produto.categoria = String.Format("{0}", dataReader["categoria"]);
+                    produto.quantidade = Convert.ToInt32(dataReader["quantidade"]);
+
+                    listaProdutos.Add(produto);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao listar os Produtos: " + ex.Message);
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
+            return listaProdutos;
+        }
+
+        public List<Categoria> ConsultarCategorias()
+        {
+            List<Categoria> listaCategorias = new List<Categoria>();
+            Categoria categoria = new Categoria();
+
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+
+                string cmdSelect = "SELECT categoria, descricao " +
+                                "FROM loja.tbcategoria";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+
+                NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    categoria = new Categoria();
+
+                    categoria.categoria = String.Format("{0}", dataReader["categoria"]);
+                    categoria.descricao = String.Format("{0}", dataReader["descricao"]);
+
+                    listaCategorias.Add(categoria);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao listar as Categorias: " + ex.Message);
+            }
+            finally
+            {
+                pgsqlConnection.Close();
+            }
+
+
+            return listaCategorias;
+        }
+
+        #endregion
+
+
+
+        public RetornoConfirmacao InserirProdutoEstoque(Produto produto)
+        {
+            RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
+
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+
+                string cmdInsert = "WITH insert1 AS (" +
+                                "INSERT INTO loja.tbproduto(nome, valor, categoria) " +
+                                "VALUES ('@nome', @valor, @categoria) " +
+                                "RETURNING idproduto" +
+                                "), " +
+                                "insert2 AS (" +
+                                "INSERT INTO loja.tbestoque(idproduto, quantidade) " +
+                                "VALUES (@idproduto, @quantidade)";
+
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdInsert, pgsqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("nome", produto.nome);
+                npgsqlCommand.Parameters.AddWithValue("valor", produto.valor);
+                npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
+                npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
+
+                npgsqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                retornoConfirmacao.codigoErro = 1;
+                retornoConfirmacao.mensagemErro = "ERRO AO CADASTRAR PRODUTO";
+                retornoConfirmacao.status = "";
+
+                throw new Exception("Erro ao inserir Produto: " + ex.Message);
+            }
+            finally
+            {
+                retornoConfirmacao.codigoErro = 0;
+                retornoConfirmacao.mensagemErro = "";
+                retornoConfirmacao.status = "PRODUTO INSERIDO NO ESTOQUE.";
+
+                pgsqlConnection.Close();
+            }
+
+            return retornoConfirmacao;
+        }
+
+
+
+        public RetornoConfirmacao RealizarVenda()
+        {
+            RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
+
+            /*
+             * NO ATO DA VENDA, INSERIR EM LOJA.TBVENDA (PRODUTOS, DATA, IDVENDEDOR E COMISSAO)
+             * REALIZAR A SOMA DOS VALORES DE TODOS OS PRODUTOS
+             * RETIRAR PRODUTOS DE TB.ESTOQUE
+             */
+
+             
+            return retornoConfirmacao;
+        }
+
+
+
+
+
     }
 }

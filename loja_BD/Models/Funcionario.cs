@@ -10,6 +10,6 @@ namespace loja_BD.Models
         public int id { get; set; }
         public string cargo { get; set; }
         public string salario { get; set; }
-        public Pessoa pessoa { get; set; } = new Pessoa();
+        public Pessoa? pessoa { get; set; } = new Pessoa();
     }
 }

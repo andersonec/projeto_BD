@@ -969,11 +969,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\projetoBD\\loja_BD\\loja_BD.csproj",
+      "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\loja_BD\\loja_BD.csproj",
       "projectName": "loja_BD",
-      "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\loja_BD\\loja_BD.csproj",
+      "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\loja_BD\\loja_BD.csproj",
       "packagesPath": "C:\\Users\\amsantos6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\loja_BD\\obj\\",
+      "outputPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\loja_BD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\amsantos6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -984,7 +984,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "http://www.nuget.org/api/v2/": {}
       },
       "frameworks": {
         "net5.0": {
@@ -1025,6 +1025,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.13, 5.0.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"

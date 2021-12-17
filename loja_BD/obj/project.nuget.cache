@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mTRJ1n+f8LhRBNvKybupbQPT5563AFwfLLp2GlmgyOX7LhS1ylC2mpQa15LTSHcdBQqIydGeIIKmXwt3EMxaIA==",
+  "dgSpecHash": "tXtsifsdCxAkpSL55553v6S9VHxSOWuwn85ZwmGMAg6Rzt6XevrEVlKM6Bv4LWmLotx8L3UnLhLP0cPMoqM46A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\loja_BD\\loja_BD.csproj",
+  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\loja_BD\\loja_BD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amsantos6\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.6\\microsoft.entityframeworkcore.5.0.6.nupkg.sha512",
     "C:\\Users\\amsantos6\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.6\\microsoft.entityframeworkcore.abstractions.5.0.6.nupkg.sha512",
@@ -29,7 +29,8 @@
     "C:\\Users\\amsantos6\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\amsantos6\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\amsantos6\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
-    "C:\\Users\\amsantos6\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\amsantos6\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\amsantos6\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": []
 }

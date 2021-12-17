@@ -20,7 +20,7 @@ namespace loja_BD.Controllers
         }
 
         [HttpGet("consultarListaFuncionarios")]
-        public List<Funcionario> ConsultarListaFuncionarios()
+        public List<FuncionarioDTO> ConsultarListaFuncionarios()
         {
             Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
 
@@ -33,6 +33,38 @@ namespace loja_BD.Controllers
             Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
 
             return metodos3Ptech.ConsultarFuncionario(cpf);
+        }
+
+        [HttpGet("consultarListaClientes")]
+        public List<ClienteDTO> ConsultarListaClientes()
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ConsultarListaClientes();
+        }
+
+        [HttpGet("consultarCliente/{cpf}")]
+        public Cliente ConsultarCliente(string cpf)
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ConsultarCliente(cpf);
+        }
+
+        [HttpGet("consultarListaCategorias")]
+        public List<Categoria> ConsultarListaCategorias()
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ConsultarCategorias();
+        }
+
+        [HttpPost("inserirProdutoEstoque")]
+        public RetornoConfirmacao InserirProdutoEstoque(Produto produto)
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.InserirProdutoEstoque(produto);
         }
     }
 }

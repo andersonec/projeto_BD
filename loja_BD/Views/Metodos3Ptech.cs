@@ -12,16 +12,11 @@ namespace loja_BD.Views
 {
     public class Metodos3Ptech : DataAccessLayer
     {
-        #region MÉTODOS PARA CONSULTAS DE PESSOAL
+        #region MÉTODOS PARA CONSULTAS
         public List<FuncionarioDTO> ConsultarListaFuncionarios()
         {
-<<<<<<< HEAD
-            List<Produto> listaProdutos = new List<Produto>();
-            Produto produto = new Produto();
-=======
             List<FuncionarioDTO> listaFuncionarios = new List<FuncionarioDTO>();
             FuncionarioDTO funcionario = new FuncionarioDTO();
->>>>>>> 14cdfd81563d9bd89f25eb2a62a5d411c001c511
 
             try
             {
@@ -95,7 +90,7 @@ namespace loja_BD.Views
                     funcionario.pessoa.endereco.numero = String.Format("{0}", dataReader["numero"]);
                     funcionario.pessoa.endereco.bairro = String.Format("{0}", dataReader["bairro"]);
                     funcionario.pessoa.endereco.complemento = String.Format("{0}", dataReader["complemento"]);
-                    funcionario.pessoa.endereco.cep = Convert.ToDecimal(dataReader["cep"]);
+                    funcionario.pessoa.endereco.cep = String.Format(@"{0:00\.000\-000}", dataReader["cep"]);
                     funcionario.pessoa.endereco.cidade = String.Format("{0}", dataReader["cidade"]);
                     funcionario.pessoa.endereco.estado = String.Format("{0}", dataReader["estado"]);
                 }
@@ -123,7 +118,7 @@ namespace loja_BD.Views
             {
                 pgsqlConnection = new NpgsqlConnection(connString1);
                 pgsqlConnection.Open();
-                string cmdSelect = "SELECT c.idcliente, c.cpf, p.nome, p.cpf,  " +
+                string cmdSelect = "SELECT c.idcliente, c.cpf, p.nome, p.cpf  " +
                                 "FROM loja.tbcliente AS c, loja.tbpessoa AS p " +
                                 "WHERE c.cpf LIKE p.cpf";
 
@@ -179,21 +174,6 @@ namespace loja_BD.Views
 
                     cliente.idCliente = Convert.ToInt32(dataReader["idvendedor"]);
 
-<<<<<<< HEAD
-                    funcionario.pessoa.cpf = String.Format(@"{0:000\.000\.000\-00}", dataReader["cpf"]);
-                    funcionario.pessoa.nome = String.Format("{0}", dataReader["nome"]);
-                    funcionario.pessoa.dataNascimento = String.Format("{0:dd/MM/yyyy}", dataReader["datanascimento"]);
-                    funcionario.pessoa.telefone = String.Format("({0}) {1}", dataReader["ddd"], dataReader["telefone"]);
-                    funcionario.pessoa.email = String.Format("{0}", dataReader["email"]);
-
-                    funcionario.pessoa.endereco.rua = String.Format("{0}", dataReader["rua"]);
-                    funcionario.pessoa.endereco.numero = String.Format("{0}", dataReader["numero"]);
-                    funcionario.pessoa.endereco.bairro = String.Format("{0}", dataReader["bairro"]);
-                    funcionario.pessoa.endereco.complemento = String.Format("{0}", dataReader["complemento"]);
-                    funcionario.pessoa.endereco.cep = String.Format(@"{0:00\.000\-000}", dataReader["cep"]);
-                    funcionario.pessoa.endereco.cidade = String.Format("{0}", dataReader["cidade"]);
-                    funcionario.pessoa.endereco.estado = String.Format("{0}", dataReader["estado"]);
-=======
                     cliente.pessoa.cpf = String.Format("{0}", dataReader["cpf"]);
                     cliente.pessoa.nome = String.Format("{0}", dataReader["nome"]);
                     cliente.pessoa.dataNascimento = String.Format("{0}", dataReader["datanascimento"]);
@@ -204,10 +184,9 @@ namespace loja_BD.Views
                     cliente.pessoa.endereco.numero = String.Format("{0}", dataReader["numero"]);
                     cliente.pessoa.endereco.bairro = String.Format("{0}", dataReader["bairro"]);
                     cliente.pessoa.endereco.complemento = String.Format("{0}", dataReader["complemento"]);
-                    cliente.pessoa.endereco.cep = Convert.ToDecimal(dataReader["cep"]);
+                    cliente.pessoa.endereco.cep = String.Format(@"{0:00\.000\-000}", dataReader["cep"]);
                     cliente.pessoa.endereco.cidade = String.Format("{0}", dataReader["cidade"]);
                     cliente.pessoa.endereco.estado = String.Format("{0}", dataReader["estado"]);
->>>>>>> 14cdfd81563d9bd89f25eb2a62a5d411c001c511
                 }
             }
             catch (Exception ex)
@@ -333,6 +312,7 @@ namespace loja_BD.Views
                 npgsqlCommand.Parameters.AddWithValue("valor", produto.valor);
                 npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
                 npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
+                npgsqlCommand.Parameters.AddWithValue("idproduto", "idproduto");
 
                 npgsqlCommand.ExecuteNonQuery();
             }

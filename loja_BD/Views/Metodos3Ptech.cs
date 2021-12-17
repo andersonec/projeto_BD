@@ -292,29 +292,49 @@ namespace loja_BD.Views
         public RetornoConfirmacao InserirProdutoEstoque(Produto produto)
         {
             RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
-
+            int idprodutoIn = 0;
             try
             {
                 pgsqlConnection = new NpgsqlConnection(connString1);
                 pgsqlConnection.Open();
-
-                string cmdInsert = "WITH insert1 AS (" +
+                string cmdInsert = "WITH ins AS (" +
                                 "INSERT INTO loja.tbproduto(nome, valor, categoria) " +
-                                "VALUES ('@nome', @valor, @categoria) " +
-                                "RETURNING idproduto" +
-                                "), " +
-                                "insert2 AS (" +
+                                "VALUES (@nome, @valor, @categoria) " +
+                                "RETURNING idproduto) " +
                                 "INSERT INTO loja.tbestoque(idproduto, quantidade) " +
-                                "VALUES (@idproduto, @quantidade)";
-
+                                "SELECT idproduto, @quantidade " +
+                                "FROM ins";
                 NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdInsert, pgsqlConnection);
                 npgsqlCommand.Parameters.AddWithValue("nome", produto.nome);
-                npgsqlCommand.Parameters.AddWithValue("valor", produto.valor);
+                npgsqlCommand.Parameters.AddWithValue("valor", Convert.ToDecimal(produto.valor));
                 npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
                 npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
-                npgsqlCommand.Parameters.AddWithValue("idproduto", "idproduto");
-
                 npgsqlCommand.ExecuteNonQuery();
+
+
+                //string cmdInsert = "INSERT INTO loja.tbproduto(nome, valor, categoria) " +
+                //                "VALUES (@nome, @valor, @categoria) " +
+                //                "RETURNING idproduto";
+                //NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdInsert, pgsqlConnection);
+                //npgsqlCommand.Parameters.AddWithValue("nome", produto.nome);
+                //npgsqlCommand.Parameters.AddWithValue("valor", Convert.ToDecimal(produto.valor));
+                //npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
+                //npgsqlCommand.ExecuteReader();
+
+                //NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
+                //dataReader.Read();
+                //idprodutoIn = Convert.ToInt32(dataReader["idproduto"]);
+                //pgsqlConnection.Close();
+
+                //pgsqlConnection = new NpgsqlConnection(connString1);
+                //pgsqlConnection.Open();
+                //string cmdInsert2 = "INSERT INTO loja.tbestoque(idproduto, quantidade) " +
+                //                "VALUES (@idproduto, @quantidade)";
+                //NpgsqlCommand npgsqlCommand2 = new NpgsqlCommand(cmdInsert2, pgsqlConnection);
+                //npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
+                //npgsqlCommand.Parameters.AddWithValue("idproduto", idprodutoIn);
+                //npgsqlCommand.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {

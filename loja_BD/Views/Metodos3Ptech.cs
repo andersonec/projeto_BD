@@ -14,8 +14,6 @@ namespace loja_BD.Views
     {
         public List<Produto> ConsultarListaProdutos()
         {
-            DataTable dataTable = new DataTable();
-
             List<Produto> listaProdutos = new List<Produto>();
             Produto produto = new Produto();
 
@@ -122,9 +120,9 @@ namespace loja_BD.Views
                     funcionario.cargo = String.Format("{0}", dataReader["cargo"]);
                     funcionario.salario = String.Format("{0}", dataReader["salario"]);
 
-                    funcionario.pessoa.cpf = String.Format("{0}", dataReader["cpf"]);
+                    funcionario.pessoa.cpf = String.Format(@"{0:000\.000\.000\-00}", dataReader["cpf"]);
                     funcionario.pessoa.nome = String.Format("{0}", dataReader["nome"]);
-                    funcionario.pessoa.dataNascimento = String.Format("{0}", dataReader["datanascimento"]);
+                    funcionario.pessoa.dataNascimento = String.Format("{0:dd/MM/yyyy}", dataReader["datanascimento"]);
                     funcionario.pessoa.telefone = String.Format("({0}) {1}", dataReader["ddd"], dataReader["telefone"]);
                     funcionario.pessoa.email = String.Format("{0}", dataReader["email"]);
 
@@ -132,7 +130,7 @@ namespace loja_BD.Views
                     funcionario.pessoa.endereco.numero = String.Format("{0}", dataReader["numero"]);
                     funcionario.pessoa.endereco.bairro = String.Format("{0}", dataReader["bairro"]);
                     funcionario.pessoa.endereco.complemento = String.Format("{0}", dataReader["complemento"]);
-                    funcionario.pessoa.endereco.cep = Convert.ToDecimal(dataReader["cep"]);
+                    funcionario.pessoa.endereco.cep = String.Format(@"{0:00\.000\-000}", dataReader["cep"]);
                     funcionario.pessoa.endereco.cidade = String.Format("{0}", dataReader["cidade"]);
                     funcionario.pessoa.endereco.estado = String.Format("{0}", dataReader["estado"]);
                 }

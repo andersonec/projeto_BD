@@ -21,7 +21,5 @@ namespace loja_BD.DAL
         {
             this.connString1 = String.Format("Host={0};Port={1};Database={4};User Id={2};Password={3};", serverName, port, userName, password, databaseName);
         }
-
-        //Host=database-andersonsantos.ce7fpddug7vj.us-east-1.rds.amasonaws.com;Port=5432;Pooling=true;Database=projetoBD;User ID=andersonSantos;Password=150492ams;
     }
 }

@@ -66,5 +66,22 @@ namespace loja_BD.Controllers
 
             return metodos3Ptech.InserirProdutoEstoque(produto);
         }
+
+        [HttpDelete("deletarProdutoEstoque")]
+        public RetornoConfirmacao DeletarProdutoEstoque(int idProduto)
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.ExcluirProdutoEstoque(idProduto);
+        }
+
+
+        [HttpPut("atualizarPrecoProduto")]
+        public RetornoConfirmacao AtualizarPrecoProduto(int idProduto, decimal novoPreco)
+        {
+            Metodos3Ptech metodos3Ptech = new Metodos3Ptech();
+
+            return metodos3Ptech.AtualizarPrecoProduto(idProduto, novoPreco);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using loja_BD.DAL;
 using loja_BD.Models;
+using loja_BD.Models.body;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -288,11 +289,10 @@ namespace loja_BD.Views
         #endregion
 
 
-
+        #region MÉTODOS DE INSERÇÃO DE DADOS
         public RetornoConfirmacao InserirProdutoEstoque(Produto produto)
         {
             RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
-            int idprodutoIn = 0;
             try
             {
                 pgsqlConnection = new NpgsqlConnection(connString1);
@@ -310,31 +310,6 @@ namespace loja_BD.Views
                 npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
                 npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
                 npgsqlCommand.ExecuteNonQuery();
-
-
-                //string cmdInsert = "INSERT INTO loja.tbproduto(nome, valor, categoria) " +
-                //                "VALUES (@nome, @valor, @categoria) " +
-                //                "RETURNING idproduto";
-                //NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdInsert, pgsqlConnection);
-                //npgsqlCommand.Parameters.AddWithValue("nome", produto.nome);
-                //npgsqlCommand.Parameters.AddWithValue("valor", Convert.ToDecimal(produto.valor));
-                //npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
-                //npgsqlCommand.ExecuteReader();
-
-                //NpgsqlDataReader dataReader = npgsqlCommand.ExecuteReader();
-                //dataReader.Read();
-                //idprodutoIn = Convert.ToInt32(dataReader["idproduto"]);
-                //pgsqlConnection.Close();
-
-                //pgsqlConnection = new NpgsqlConnection(connString1);
-                //pgsqlConnection.Open();
-                //string cmdInsert2 = "INSERT INTO loja.tbestoque(idproduto, quantidade) " +
-                //                "VALUES (@idproduto, @quantidade)";
-                //NpgsqlCommand npgsqlCommand2 = new NpgsqlCommand(cmdInsert2, pgsqlConnection);
-                //npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
-                //npgsqlCommand.Parameters.AddWithValue("idproduto", idprodutoIn);
-                //npgsqlCommand.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
@@ -357,24 +332,122 @@ namespace loja_BD.Views
         }
 
 
+        #endregion
 
-        public RetornoConfirmacao RealizarVenda()
+        //#region MÉTODOS DE OPERAÇÕES DA LOJA
+        //public RetornoConfirmacao RealizarVenda(Venda venda)
+        //{
+        //    RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
+
+        //    /*
+        //     * NO ATO DA VENDA, INSERIR EM LOJA.TBVENDA (PRODUTOS, DATA, IDVENDEDOR E COMISSAO)
+        //     * REALIZAR A SOMA DOS VALORES DE TODOS OS PRODUTOS
+        //     * RETIRAR PRODUTOS DE TB.ESTOQUE
+        //     */
+        //    try
+        //    {
+        //        pgsqlConnection = new NpgsqlConnection(connString1);
+        //        pgsqlConnection.Open();
+        //        string cmdInsert = "WITH ins AS (" +
+        //                        "INSERT INTO loja.tbvenda(produtos, data, idvendedor, comissao) " +
+        //                        "VALUES (@nome, @valor, @categoria) " +
+        //                        "RETURNING idproduto) " +
+        //                        "INSERT INTO loja.tbestoque(idproduto, quantidade) " +
+        //                        "SELECT idproduto, @quantidade " +
+        //                        "FROM ins";
+        //        NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdInsert, pgsqlConnection);
+        //        npgsqlCommand.Parameters.AddWithValue("nome", venda.listaProdutos);
+        //        npgsqlCommand.Parameters.AddWithValue("valor", Convert.ToDecimal(produto.valor));
+        //        npgsqlCommand.Parameters.AddWithValue("categoria", produto.categoria);
+        //        npgsqlCommand.Parameters.AddWithValue("quantidade", produto.quantidade);
+        //        npgsqlCommand.ExecuteNonQuery();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        retornoConfirmacao.codigoErro = 1;
+        //        retornoConfirmacao.mensagemErro = "ERRO AO REALIZAR VENDA.";
+        //        retornoConfirmacao.status = "";
+
+        //        throw new Exception("Erro ao inserir Produto: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        retornoConfirmacao.codigoErro = 0;
+        //        retornoConfirmacao.mensagemErro = "";
+        //        retornoConfirmacao.status = "VENDA CONCLUIDA.";
+
+        //        pgsqlConnection.Close();
+        //    }
+
+        //    return retornoConfirmacao;
+        //}
+        //#endregion
+
+        #region MÉTODOS PARA MANUTENÇÃO DE DADOS
+        public RetornoConfirmacao ExcluirProdutoEstoque(int idProduto)
         {
             RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
 
-            /*
-             * NO ATO DA VENDA, INSERIR EM LOJA.TBVENDA (PRODUTOS, DATA, IDVENDEDOR E COMISSAO)
-             * REALIZAR A SOMA DOS VALORES DE TODOS OS PRODUTOS
-             * RETIRAR PRODUTOS DE TB.ESTOQUE
-             */
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+                string cmdSelect = "DELETE FROM loja.tbestoque " +
+                                "WHERE tbestoque.idproduto = @idProduto";
 
-             
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("idProduto", idProduto);
+                npgsqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao buscar Cliente: " + ex.Message);
+            }
+            finally
+            {
+                retornoConfirmacao.codigoErro = 0;
+                retornoConfirmacao.mensagemErro = "";
+                retornoConfirmacao.status = "PRODUTO DELETADO COM SUCESSO";
+                pgsqlConnection.Close();
+            }
             return retornoConfirmacao;
         }
+        
+        public RetornoConfirmacao AtualizarPrecoProduto(int idProduto, decimal novoPreco)
+        {
+            RetornoConfirmacao retornoConfirmacao = new RetornoConfirmacao();
 
+            try
+            {
+                pgsqlConnection = new NpgsqlConnection(connString1);
+                pgsqlConnection.Open();
+                string cmdSelect = "UPDATE loja.tbproduto " +
+                                "SET valor = @novoPreco " +
+                                "WHERE idproduto = @produto";
 
+                NpgsqlCommand npgsqlCommand = new NpgsqlCommand(cmdSelect, pgsqlConnection);
+                npgsqlCommand.Parameters.AddWithValue("novoPreco", novoPreco);
+                npgsqlCommand.Parameters.AddWithValue("produto", idProduto);
+                npgsqlCommand.ExecuteNonQuery();
 
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception("Erro ao buscar Cliente: " + ex.Message);
+            }
+            finally
+            {
+                retornoConfirmacao.codigoErro = 0;
+                retornoConfirmacao.mensagemErro = "";
+                retornoConfirmacao.status = "PREÇO ATUALIZADO COM SUCESSO";
 
+                pgsqlConnection.Close();
+            }
+            return retornoConfirmacao;
+        }
+        #endregion
     }
 }

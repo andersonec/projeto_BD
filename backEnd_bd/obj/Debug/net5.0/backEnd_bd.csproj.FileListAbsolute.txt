@@ -1,0 +1,5 @@
+C:\Users\amsantos6\Documents\PROJETO\apiRest_bd\backEnd_bd\obj\Debug\net5.0\backEnd_bd.csproj.AssemblyReference.cache
+C:\Users\amsantos6\Documents\PROJETO\apiRest_bd\backEnd_bd\obj\Debug\net5.0\backEnd_bd.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amsantos6\Documents\PROJETO\apiRest_bd\backEnd_bd\obj\Debug\net5.0\backEnd_bd.AssemblyInfoInputs.cache
+C:\Users\amsantos6\Documents\PROJETO\apiRest_bd\backEnd_bd\obj\Debug\net5.0\backEnd_bd.AssemblyInfo.cs
+C:\Users\amsantos6\Documents\PROJETO\apiRest_bd\backEnd_bd\obj\Debug\net5.0\backEnd_bd.csproj.CoreCompileInputs.cache

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o5zsnwixjktvDA+Hgtl4yyUAcOmzZ/8+0Mc7Ft2P3QjvPhrCTQHjanXtQrGlya7KlAKEx1DYrQjNDX7WOhnlsg==",
+  "dgSpecHash": "AM/citzPAxUE65UqKtkbvkTaQtrDPBiZpATdnzfuOGfJ5wpK7EgnINlw+V61aNv2jHCDpcKzs/t4D2wFIdsTPQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
+  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amsantos6\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\amsantos6\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

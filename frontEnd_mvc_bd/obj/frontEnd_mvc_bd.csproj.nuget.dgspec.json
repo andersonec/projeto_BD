@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj": {}
+    "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj": {
+    "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj",
+        "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj",
         "projectName": "backEnd_bd",
-        "projectPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj",
+        "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj",
         "packagesPath": "C:\\Users\\amsantos6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\obj\\",
+        "outputPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\amsantos6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj": {
+    "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
+        "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
         "projectName": "frontEnd_mvc_bd",
-        "projectPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
+        "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\frontEnd_mvc_bd.csproj",
         "packagesPath": "C:\\Users\\amsantos6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\frontEnd_mvc_bd\\obj\\",
+        "outputPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\frontEnd_mvc_bd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\amsantos6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj": {
-                "projectPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj"
+              "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj": {
+                "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj"
               }
             }
           }

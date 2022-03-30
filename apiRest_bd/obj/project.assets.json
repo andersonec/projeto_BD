@@ -84,6 +84,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "backEnd_bd/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/backEnd_bd.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/backEnd_bd.dll": {}
+        }
       }
     }
   },
@@ -221,12 +231,18 @@
         "swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "backEnd_bd/1.0.0": {
+      "type": "project",
+      "path": "../backEnd_bd/backEnd_bd.csproj",
+      "msbuildProject": "../backEnd_bd/backEnd_bd.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Newtonsoft.Json >= 13.0.1",
-      "Swashbuckle.AspNetCore >= 5.6.3"
+      "Swashbuckle.AspNetCore >= 5.6.3",
+      "backEnd_bd >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -235,11 +251,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\apiRest_bd\\apiRest_bd.csproj",
+      "projectUniqueName": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\apiRest_bd\\apiRest_bd.csproj",
       "projectName": "apiRest_bd",
-      "projectPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\apiRest_bd\\apiRest_bd.csproj",
+      "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\apiRest_bd\\apiRest_bd.csproj",
       "packagesPath": "C:\\Users\\amsantos6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\apiRest_bd\\obj\\",
+      "outputPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\apiRest_bd\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\amsantos6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -255,7 +271,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj": {
+              "projectPath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

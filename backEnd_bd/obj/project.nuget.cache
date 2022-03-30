@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OThRQnn5cYfEYEs7wOQ2HqKIj0ixAnuwDqoFSqCypwBSe9YNmyYrAUGH8OKbGeMAjefhMgc56onBnFy4DVv+7A==",
+  "dgSpecHash": "K6EOzaPPwI7MA+YgsA64TUTxwYxvUUH8OK2ZizryYk2QSBl3L3oKaP9eg7u+xbZFy1RxgfgauQZyoQ+rmvXtKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\PROJETO\\apiRest_bd\\backEnd_bd\\backEnd_bd.csproj",
+  "projectFilePath": "C:\\Users\\amsantos6\\Documents\\projetoBD\\dev_anderson\\backEnd_bd\\backEnd_bd.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
